@@ -1,26 +1,17 @@
+from ast import Pass
 from kivymd.uix.list import  ImageLeftWidget
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.list import TwoLineAvatarListItem
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.theming import ThemableBehavior
+from kivymd.uix.list import MDList
 from libs.applibs import utils
 
 utils.load_kv("home.kv")
 
 class Home_Screen(MDScreen):
-    
-    def search_account(self,search_field):
-        """
-        this method use when search button pressed search_field
-        contain data in string that you want to search on hamster server
-        """
-
-        # for dummy search item [------
-        
-        twolineW= TwoLineAvatarListItem(text=f"{search_field}",
-            secondary_text=f"@{search_field}")
-
-        twolineW.add_widget(ImageLeftWidget(source="assets//img//hamster_icon.png"))
-        
-        self.ids.search_items.add_widget(twolineW)
-        # #  ----- ] end dummy search
-    
+    pass
+class ContentNavigationDrawer(MDBoxLayout):
+    pass
+class DrawerList(ThemableBehavior, MDList):
+    pass

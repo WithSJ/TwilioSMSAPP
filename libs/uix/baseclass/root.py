@@ -45,7 +45,7 @@ class Root(ScreenManager):
         
         print(self.screen_list)
 
-        if name == "home":            
+        # if name == "home":            
             # MDBottomNavigation not resize there tabs when app stat in android 
             # to resize when switch to home screen 
-            self.get_screen(name).ids.android_tabs.on_resize()
+            # self.get_screen(name).ids.android_tabs.on_resize()

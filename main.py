@@ -10,8 +10,7 @@ from libs.uix.baseclass.profile import Profile_Screen
 from libs.uix.baseclass.root import Root
 from libs.uix.baseclass.signup import Signup_Screen
 from libs.uix.baseclass.verification import Verification_Screen
-from main_imports import ImageLeftWidget, MDApp, TwoLineAvatarListItem
-
+from kivymd.app import MDApp
 
 class TwilioSMSApp(MDApp):
     """
@@ -35,21 +34,21 @@ class TwilioSMSApp(MDApp):
 
         self.screen_manager.change_screen("chat_room")
     
-    def all_chats(self):
-        """
-        All Chat that show in home chat tab. all chat are added by 
-        this method. it will use in differe t in future.
-        """
-        # for dummy chats [------
-        # self.change_screen("profile")
-        twolineW= TwoLineAvatarListItem(text=f"Hamster",
-            secondary_text="@username",
-            on_touch_up=self.chat_room)
+    # def all_chats(self):
+    #     """
+    #     All Chat that show in home chat tab. all chat are added by 
+    #     this method. it will use in differe t in future.
+    #     """
+    #     # for dummy chats [------
+    #     # self.change_screen("profile")
+    #     twolineW= TwoLineAvatarListItem(text=f"Hamster",
+    #         secondary_text="@username",
+    #         on_touch_up=self.chat_room)
 
-        twolineW.add_widget(ImageLeftWidget(source="assets//img//hamster_icon.png"))
+    #     twolineW.add_widget(ImageLeftWidget(source="assets//img//hamster_icon.png"))
         
-        self.screen_manager.get_screen("home").ids.chat_tab.add_widget(twolineW)
-        #  ----- ] end dummy chats
+    #     self.screen_manager.get_screen("home").ids.chat_tab.add_widget(twolineW)
+    #     #  ----- ] end dummy chats
     
     
 
@@ -83,7 +82,7 @@ class TwilioSMSApp(MDApp):
         Anything we want to run when start application that code is here.
         """
         self.screen_manager.change_screen("login")
-        self.all_chats()
+        # self.all_chats()
 
 if __name__ == "__main__":
     # Start application from here.

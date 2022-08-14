@@ -1,52 +1,80 @@
 <MDToolbar@MDTopAppBar>:
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    unfocus_color: "#f7f4e7"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    bg_color: "#f7f4e7"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    _no_ripple_effect: True
 
 <Home_Screen>:
     name: "home"
-    
-    BoxLayout:
-        orientation:'vertical'
+    MDNavigationLayout:
 
-        MDToolbar:
+        MDTopAppBar:
             title: app.APP_NAME
-            size_hint: 1,.08
+            elevation: 10
+            pos_hint: {"top": 1}
+            md_bg_color: "#e7e4c0"
+            specific_text_color: "#4a4939"
             right_action_items: 
                 [ ["account", lambda x:app.screen_manager.change_screen("profile")]] 
-            left_action_items: 
+            left_action_items:
                 [['menu', lambda x: nav_drawer.set_state("open")]]
-            elevation: 5
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0) if self.anchor == "left" else (16, 0, 0, 16)
+            md_bg_color: "#f7f4e7"
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "Header title"
+                    title_color: "#4a4939"
+                    text: "Header text"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+                MDNavigationDrawerLabel:
+                    text: app.APP_NAME
+
+                DrawerClickableItem:
+                    icon: "send"
+                    text: "Outbox"
+                    right_text: "+99"
+
+                DrawerClickableItem:
+                    icon: "message"
+                    text: "Inbox"
         
-        MDBottomNavigation:
-            id: android_tabs
+                DrawerClickableItem:
+                    icon: "file-chart"
+                    text: "Report"
+
+                MDNavigationDrawerDivider:
+
+                MDNavigationDrawerLabel:
+                    text: "Labels"
+
+                DrawerLabelItem:
+                    icon: "information-outline"
+                    text: "Label"
+
+                DrawerLabelItem:
+                    icon: "information-outline"
+                    text: "Label"
+
+                DrawerClickableItem:
+                    icon: "logout"
+                    text: "Logout"
             
-            MDBottomNavigationItem:        
-                name: "chat_scr"
-                text: f"CHATS"
-                icon: "chat"
-                ScrollView:
-                    MDList:
-                        id: chat_tab
-        
-            MDBottomNavigationItem:
-                name: "search_scr"
-                text: f"SEARCH"
-                icon: "account-search"
-
-                MDBoxLayout:
-                    orientation: 'vertical'
-                    spacing: dp(5)
-                    padding: dp(10)
-
-                    MDBoxLayout:
-                        adaptive_height: True
-
-                        MDTextField:
-                            id: search_field
-                            hint_text: 'Search'
-                        
-                        MDIconButton:
-                            icon: 'magnify'
-                            on_release: root.search_account(search_field.text)
-
-                    ScrollView:
-                        MDList:
-                            id: search_items
+            
