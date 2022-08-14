@@ -1,22 +1,6 @@
-#--[Start platform specific code]
-"""This code to detect it's Android or not 
-if it's not android than app window size change in android phone size"""
-from kivy.utils import platform
-
-if platform != 'android':
-    from kivy.config import Config
-    Config.set("graphics","width",360)
-    Config.set("graphics","height",740)
-#--[End platform specific code]
-
-#--[Start Soft_Keyboard code ]
-"""code for android keyboard. when in android keyboard show textbox 
-automatic go to top of keyboard so user can see when he type msg"""
-from kivy.core.window import Window
-
-Window.keyboard_anim_args = {"d":.2,"t":"linear"}
-Window.softinput_mode = "below_target"
-#--[End Soft_Keyboard code ]
+from kivy.config import Config
+Config.set("graphics","width",760)
+Config.set("graphics","height",750)
 
 from libs.uix.baseclass.chat_room import Chat_Room_Screen
 from libs.uix.baseclass.forgot import Forgot_Screen
@@ -29,17 +13,17 @@ from libs.uix.baseclass.verification import Verification_Screen
 from main_imports import ImageLeftWidget, MDApp, TwoLineAvatarListItem
 
 
-class HamsterApp(MDApp):
+class TwilioSMSApp(MDApp):
     """
     Hamster App start from here this class is root of app.
     in kivy (.kv) file when use app.method_name app is start from here
     """
 
     def __init__(self, **kwargs):
-        super(HamsterApp, self).__init__(**kwargs)
+        super(TwilioSMSApp, self).__init__(**kwargs)
         
-        self.APP_NAME = "Hamster"
-        self.COMPANY_NAME = "Hamster.org"
+        self.APP_NAME = "Twilio SMS App"
+        self.COMPANY_NAME = "Develop By Sandeep Jadam"
         
     def chat_room(self,touch,a):
         """Switch to Chatroom. but username and chatroom username 
@@ -103,4 +87,4 @@ class HamsterApp(MDApp):
 
 if __name__ == "__main__":
     # Start application from here.
-    HamsterApp().run() 
+    TwilioSMSApp().run() 

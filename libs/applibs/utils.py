@@ -1,6 +1,6 @@
 import os
 
-from main_imports import Builder
+from kivy.lang import Builder
 
 
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):

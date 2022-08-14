@@ -1,4 +1,7 @@
-from main_imports import ImageLeftWidget, MDScreen, TwoLineAvatarListItem
+from kivymd.uix.list import  ImageLeftWidget
+from kivymd.uix.screen import MDScreen 
+from kivymd.uix.list import TwoLineAvatarListItem
+from kivymd.uix.boxlayout import MDBoxLayout
 from libs.applibs import utils
 
 utils.load_kv("home.kv")
@@ -20,5 +23,4 @@ class Home_Screen(MDScreen):
         
         self.ids.search_items.add_widget(twolineW)
         # #  ----- ] end dummy search
-    
     

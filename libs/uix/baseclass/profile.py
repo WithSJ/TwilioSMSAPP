@@ -1,5 +1,8 @@
-from main_imports import (MDDialog, MDFlatButton, MDGridBottomSheet, MDScreen,
-                          OneLineTextDialog)
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.bottomsheet import MDGridBottomSheet
+from kivymd.uix.screen import MDScreen
+from libs.uix.baseclass.ui_class import OneLineTextDialog
 
 from libs.applibs import utils
 

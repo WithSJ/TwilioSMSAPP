@@ -1,4 +1,7 @@
-from main_imports import MDCard, MDLabel, MDScreen, MDSeparator
+from kivymd.uix.card import MDCard, MDSeparator
+from kivymd.uix.label import MDLabel
+from kivymd.uix.screen import MDScreen
+
 from libs.applibs import utils
 utils.load_kv("chat_room.kv")
 

@@ -1,12 +1,18 @@
+<MDToolbar@MDTopAppBar>:
+
 <Home_Screen>:
     name: "home"
+    
     BoxLayout:
         orientation:'vertical'
 
         MDToolbar:
             title: app.APP_NAME
             size_hint: 1,.08
-            right_action_items: [ ["account", lambda x:app.screen_manager.change_screen("profile")]] 
+            right_action_items: 
+                [ ["account", lambda x:app.screen_manager.change_screen("profile")]] 
+            left_action_items: 
+                [['menu', lambda x: nav_drawer.set_state("open")]]
             elevation: 5
         
         MDBottomNavigation:
@@ -44,4 +50,3 @@
                     ScrollView:
                         MDList:
                             id: search_items
-              

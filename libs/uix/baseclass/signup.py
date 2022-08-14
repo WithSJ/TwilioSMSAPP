@@ -1,4 +1,4 @@
-from main_imports import MDScreen
+from kivymd.uix.screen import MDScreen
 from libs.applibs import utils
 
 utils.load_kv("signup.kv")
