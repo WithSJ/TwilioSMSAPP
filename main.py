@@ -1,6 +1,5 @@
-from kivy.config import Config
-Config.set("graphics","width",760)
-Config.set("graphics","height",750)
+from kivy.core.window import Window
+Window.maximize()
 
 from libs.uix.baseclass.chat_room import Chat_Room_Screen
 from libs.uix.baseclass.forgot import Forgot_Screen
@@ -33,23 +32,6 @@ class TwilioSMSApp(MDApp):
 
 
         self.screen_manager.change_screen("chat_room")
-    
-    # def all_chats(self):
-    #     """
-    #     All Chat that show in home chat tab. all chat are added by 
-    #     this method. it will use in differe t in future.
-    #     """
-    #     # for dummy chats [------
-    #     # self.change_screen("profile")
-    #     twolineW= TwoLineAvatarListItem(text=f"Hamster",
-    #         secondary_text="@username",
-    #         on_touch_up=self.chat_room)
-
-    #     twolineW.add_widget(ImageLeftWidget(source="assets//img//hamster_icon.png"))
-        
-    #     self.screen_manager.get_screen("home").ids.chat_tab.add_widget(twolineW)
-    #     #  ----- ] end dummy chats
-    
     
 
     def build(self):

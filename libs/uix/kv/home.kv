@@ -16,6 +16,84 @@
 
 <Home_Screen>:
     name: "home"
+    
+    MDTextField:
+        hint_text: "Filename"
+        mode: "round"
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        pos_hint: {"center_x":0.6, "center_y":0.8}
+        size_hint_x: .4
+    
+    MDRaisedButton:
+        text: "Select File"
+        md_bg_color: "#e7e4c0"
+        text_color: "#4a4939"
+        pos_hint: {"center_x":0.88, "center_y":0.8}
+        size_hint_x: .1
+        #on_release: app.screen_manager.change_screen("home")
+    
+    MDTextField:
+        size_hint_x: .5
+        hint_text: "Message"
+        mode: "fill"
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        size_hint: .4,.3
+        multiline: True
+        max_text_length: 160
+        pos_hint: {"center_x":0.6, "center_y":0.6}
+     
+
+    MDRaisedButton:
+        text: "Send To All"
+        md_bg_color: "#e7e4c0"
+        text_color: "#4a4939"
+        pos_hint: {"center_x": 0.6, "center_y":0.4}
+        size_hint_x: .3
+        on_release: 
+            #app.screen_manager.change_screen("home")
+
+    ScrollView:
+        pos_hint: {"center_x":0.15, "center_y":.5}
+        size_hint: .3,.7
+        MDList:
+            id: container
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+            OneLineListItem:
+                text: "+999999999"
+    
     MDNavigationLayout:
 
         MDTopAppBar:
@@ -77,4 +155,5 @@
                     icon: "logout"
                     text: "Logout"
             
-            
+    
+    

@@ -16,13 +16,19 @@
     MDTextField:
         hint_text: "Username"
         pos_hint: {"center_x": 0.5, "center_y": 0.65}
-        size_hint: .75,0.085
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        size_hint_x: .4
         # mode: "rectangle"
     
     MDTextField:
         hint_text: "Password"
         pos_hint: {"center_x":0.5, "center_y":0.57}
-        size_hint: .75,0.085
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        size_hint_x: .4
         password: True
         # mode: "rectangle"
     
@@ -31,11 +37,11 @@
         md_bg_color: "#e7e4c0"
         text_color: "#4a4939"
         pos_hint: {"center_x": 0.5, "center_y":0.48}
-        size_hint: .7,0.05
+        size_hint_x: .5
         on_release: app.screen_manager.change_screen("home")
 
     MDTextButton:
-        text: f"[color=#000000]Don't have an account?[/color] Sign up"
+        text: f"Don't have an account Sign up"
         markup: True
         pos_hint: {"center_x":0.5, "center_y":0.33}
         on_release: app.screen_manager.change_screen("signup")
