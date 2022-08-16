@@ -18,6 +18,7 @@
     name: "home"
     
     MDTextField:
+        id: filenamefield
         hint_text: "Filename"
         mode: "round"
         line_color_focus: "#4a4939"
@@ -32,7 +33,7 @@
         text_color: "#4a4939"
         pos_hint: {"center_x":0.88, "center_y":0.8}
         size_hint_x: .1
-        #on_release: app.screen_manager.change_screen("home")
+        on_release: root.file_manager_open()
     
     MDTextField:
         size_hint_x: .5
@@ -43,7 +44,7 @@
         text_color_focus: "#4a4939"
         size_hint: .4,.3
         multiline: True
-        max_text_length: 160
+        max_text_length: 320
         pos_hint: {"center_x":0.6, "center_y":0.6}
      
 

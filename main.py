@@ -40,11 +40,11 @@ class TwilioSMSApp(MDApp):
         that need before start application all other method and code 
         write here.
         """
-        self.theme_cls.primary_palette = "Blue"
-        self.theme_cls.primary_hue = "500"
+        # self.theme_cls.primary_palette = "Yellow"
+        # self.theme_cls.primary_hue = "500"
 
-        self.theme_cls.accent_palette = "Amber"
-        self.theme_cls.accent_hue = "500"
+        #self.theme_cls.accent_palette = "Amber"
+        #self.theme_cls.accent_hue = "500"
 
         self.theme_cls.theme_style = "Light"
     
