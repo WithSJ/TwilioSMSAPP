@@ -9,6 +9,10 @@ from libs.uix.baseclass.profile import Profile_Screen
 from libs.uix.baseclass.root import Root
 from libs.uix.baseclass.signup import Signup_Screen
 from libs.uix.baseclass.verification import Verification_Screen
+from libs.uix.baseclass.outbox import Outbox_Screen
+from libs.uix.baseclass.inbox import Inbox_Screen
+from libs.uix.baseclass.report import Report_Screen
+
 from kivymd.app import MDApp
 
 class TwilioSMSApp(MDApp):
@@ -56,6 +60,10 @@ class TwilioSMSApp(MDApp):
         self.screen_manager.add_widget(Home_Screen())
         self.screen_manager.add_widget(Chat_Room_Screen())
         self.screen_manager.add_widget(Profile_Screen())
+        self.screen_manager.add_widget(Outbox_Screen())
+        self.screen_manager.add_widget(Inbox_Screen())
+        self.screen_manager.add_widget(Report_Screen())
+
 
         return self.screen_manager
     
