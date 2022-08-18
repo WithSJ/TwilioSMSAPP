@@ -14,10 +14,10 @@ def signup(username,password) -> str:
     FileData = read_json_file()
     if FileData != 0:
         if username in FileData:
-            return "Username already taken."
+            return False,"Username already taken."
 
     write_json_file({username : password})
-    return "Account created."
+    return True,"Account created."
 
 
     
@@ -26,11 +26,11 @@ def login(username,password):
     if FileData != 0:
         if username in FileData:
             if FileData[username] == password:
-                return "Successful login."
+                return True,"Successful login."
             else:
-                return "Wrong password."
+                return False,"Wrong password."
         else:
-            return "User not found."
+            return False,"User not found."
 
     else:
-        return "User not found."
+        return False,"User not found."
