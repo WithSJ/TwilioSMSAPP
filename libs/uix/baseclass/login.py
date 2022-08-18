@@ -8,4 +8,5 @@ class Login_Screen(MDScreen):
     def app_login(self,username,password):
         msg= authentication.login(username.text,password.text)
         Snackbar(text= msg[1]).open()
+        return msg[0]
 
