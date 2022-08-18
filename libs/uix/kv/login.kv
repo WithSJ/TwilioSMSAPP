@@ -14,6 +14,7 @@
         font_style: "Subtitle2"
         
     MDTextField:
+        id: username_field
         hint_text: "Username"
         pos_hint: {"center_x": 0.5, "center_y": 0.65}
         line_color_focus: "#4a4939"
@@ -23,6 +24,7 @@
         # mode: "rectangle"
     
     MDTextField:
+        id: password_field
         hint_text: "Password"
         pos_hint: {"center_x":0.5, "center_y":0.57}
         line_color_focus: "#4a4939"
@@ -38,7 +40,7 @@
         text_color: "#4a4939"
         pos_hint: {"center_x": 0.5, "center_y":0.48}
         size_hint_x: .5
-        on_release: app.screen_manager.change_screen("home")
+        on_release: root.app_login(username_field,password_field)
 
     MDTextButton:
         text: f"Don't have an account Sign up"
