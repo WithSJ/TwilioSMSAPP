@@ -55,45 +55,14 @@
         pos_hint: {"center_x": 0.6, "center_y":0.4}
         size_hint_x: .3
         on_release: 
-            #app.screen_manager.change_screen("home")
+            root.send_to_all()
 
     ScrollView:
         pos_hint: {"center_x":0.15, "center_y":.5}
         size_hint: .3,.7
         MDList:
             id: container
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
-            OneLineListItem:
-                text: "+999999999"
+            
     
     MDNavigationLayout:
 
