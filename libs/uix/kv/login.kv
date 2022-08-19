@@ -40,7 +40,8 @@
         text_color: "#4a4939"
         pos_hint: {"center_x": 0.5, "center_y":0.48}
         size_hint_x: .5
-        on_release: root.app_login(username_field,password_field)
+        on_release: 
+            app.screen_manager.change_screen("home") if root.app_login(username_field,password_field) else print()
 
     MDTextButton:
         text: f"Don't have an account Sign up"

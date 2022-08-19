@@ -7,7 +7,7 @@ def read_json_file():
         return 0
 
 def write_json_file(data:dict):
-    with open("auth.json","a") as jsonFile:
+    with open("auth.json","w") as jsonFile:
         jsonFile.write(json.dumps(data,indent=4))
         
 def signup(username,password) -> str:
@@ -15,8 +15,11 @@ def signup(username,password) -> str:
     if FileData != 0:
         if username in FileData:
             return False,"Username already taken."
-
-    write_json_file({username : password})
+        FileData[username]= password
+    else:
+        FileData= {username : password}
+    
+    write_json_file(FileData)
     return True,"Account created."
 
 
