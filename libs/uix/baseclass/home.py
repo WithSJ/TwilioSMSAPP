@@ -16,6 +16,17 @@ utils.load_kv("home.kv")
 class Home_Screen(MDScreen):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.ListBox = list()
+        Clock.schedule_interval(self.update_on_clock, 0.5)
+
+    def update_on_clock(self,dt):
+        print("Clock",dt)
+        if len(self.ListBox) > 0:
+            listdata = self.ListBox[0]
+            self.ListBox.remove(listdata)
+            self.ids.container.add_widget(
+                        OneLineListItem(text=listdata)
+                    )
         
 
     def file_manager_open(self):
@@ -43,8 +54,10 @@ class Home_Screen(MDScreen):
                         "Number" : number,
                         "Message" : "Your sent msg."
                     }
-                    print(number)
-        print("Active USer",utils.ActiveUserData)
+                    # print(number)
+                    self.ListBox.append(number)
+                    
+        # print("Active USer",utils.ActiveUserData)
         with open(f"C:\\Twilio\\{utils.ActiveUserData['username']}_report.json","a") as jsonFile:
             jsonFile.write(json.dumps(Report,indent=4))
 
