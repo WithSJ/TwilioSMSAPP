@@ -1,15 +1,14 @@
 import json
-ActiveUserData = dict()
-
+from libs.applibs import utils
 def read_json_file():
     try:
-        with open("auth.json") as jsonFile:
+        with open("C:\\Twilio\\auth.json") as jsonFile:
             return json.load(jsonFile)
     except:
         return 0
 
 def write_json_file(data:dict):
-    with open("auth.json","w") as jsonFile:
+    with open("C:\\Twilio\\auth.json","w") as jsonFile:
         jsonFile.write(json.dumps(data,indent=4))
         
 def signup(
@@ -42,8 +41,7 @@ def login(username,password):
     if FileData != 0:
         if username in FileData:
             if FileData[username]["password"] == password:
-                global ActiveUserData
-                ActiveUserData = {username:FileData[username]}
+                utils.ActiveUserData = FileData[username]
                 return True,"Successful login."
             else:
                 return False,"Wrong password."
