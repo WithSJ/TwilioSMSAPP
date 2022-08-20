@@ -42,6 +42,7 @@ def login(username,password):
     if FileData != 0:
         if username in FileData:
             if FileData[username]["password"] == password:
+                global ActiveUserData
                 ActiveUserData = {username:FileData[username]}
                 return True,"Successful login."
             else:
