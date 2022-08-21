@@ -1,8 +1,10 @@
+import imp
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivymd.uix.list import OneLineListItem
+from kivymd.uix.navigationdrawer import MDNavigationLayout
 from kivy.clock import Clock
 from libs.applibs import utils
 from plyer import filechooser
@@ -20,7 +22,7 @@ class Home_Screen(MDScreen):
         Clock.schedule_interval(self.update_on_clock, 0.5)
 
     def update_on_clock(self,dt):
-        print("Clock",dt)
+        print("Clock",dt) 
         if len(self.ListBox) > 0:
             listdata = self.ListBox[0]
             self.ListBox.remove(listdata)
@@ -73,7 +75,18 @@ class Home_Screen(MDScreen):
 
 
     
-    
+class SideNavMenu(MDNavigationLayout):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.ListBox = list()
+        self.ClockRuning = Clock.schedule_interval(self.update_on_clock, 0.5)
+     
+    def update_on_clock(self,dt):
+        print("Clock222",dt)
+        if "username" in utils.ActiveUserData:
+            self.ids.nav_drawer_header.title = utils.ActiveUserData["username"] 
+            self.ClockRuning.cancel()
+        
 class ContentNavigationDrawer(MDBoxLayout):
     pass
 class DrawerList(ThemableBehavior, MDList):
