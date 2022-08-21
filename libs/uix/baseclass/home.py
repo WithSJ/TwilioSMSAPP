@@ -1,4 +1,3 @@
-import imp
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.theming import ThemableBehavior
@@ -11,6 +10,7 @@ from plyer import filechooser
 import threading
 import datetime
 import json
+import time
 
 
 utils.load_kv("home.kv")
@@ -20,6 +20,7 @@ class Home_Screen(MDScreen):
         super().__init__(*args, **kwargs)
         self.ListBox = list()
         Clock.schedule_interval(self.update_on_clock, 0.5)
+        self.sleepThread = time.sleep
 
     def update_on_clock(self,dt):
         print("Clock",dt) 
@@ -43,7 +44,7 @@ class Home_Screen(MDScreen):
         '''
         self.path = path
         self.ids.filenamefield.text = ", ".join(path)
-    def sendNuberList(self):
+    def sendNuberList(self,msg_text):
         Report= dict()
         for selected_file in self.path:
             with open(selected_file) as filedata:
@@ -54,10 +55,12 @@ class Home_Screen(MDScreen):
                         "DateTime" : str(time),
                         "TimeStamp" : time.timestamp(),
                         "Number" : number,
-                        "Message" : "Your sent msg."
+                        "Message" : msg_text
                     }
                     # print(number)
                     self.ListBox.append(number)
+                    self.sleepThread(.25)
+                    
                     
         # print("Active USer",utils.ActiveUserData)
         with open(f"C:\\Twilio\\{utils.ActiveUserData['username']}_report.json","a") as jsonFile:
@@ -67,8 +70,8 @@ class Home_Screen(MDScreen):
     def send_to_all(self):
         """Send sms to all phone numbers"""
         print("Send to all clicked")
-        
-        th1 = threading.Thread(target= self.sendNuberList)
+        msg_text = self.ids.msg_field.text
+        th1 = threading.Thread(target= self.sendNuberList,args=(msg_text,))
         th1.start()
 
         
