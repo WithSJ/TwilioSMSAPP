@@ -24,6 +24,8 @@ class Home_Screen(MDScreen):
 
     def update_on_clock(self,dt):
         print("Clock",dt) 
+        self.ids.progressbar.value = utils.ProgreassBarValue
+        print(utils.ProgreassBarValue)
         if len(self.ListBox) > 0:
             listdata = self.ListBox[0]
             self.ListBox.remove(listdata)
@@ -49,7 +51,11 @@ class Home_Screen(MDScreen):
         Report= dict()
         for selected_file in self.path:
             with open(selected_file) as filedata:
-                for number in set(filedata.readlines()):
+                NumFileData = set(filedata.readlines())
+                FileLen = len(NumFileData)
+                i = 0
+                for number in NumFileData:
+                    i+=1
                     number = str(number).removesuffix("\n")
                     time = datetime.datetime.now()
                     Report[number] = {
@@ -60,7 +66,9 @@ class Home_Screen(MDScreen):
                     }
                     # print(number)
                     self.ListBox.append(number)
+                    utils.ProgreassBarValue = (i/FileLen)*100
                     self.sleepThread(.25)
+
                     
                     
         # print("Active USer",utils.ActiveUserData)

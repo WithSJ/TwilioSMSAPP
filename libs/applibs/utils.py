@@ -2,6 +2,7 @@ import os
 
 from kivy.lang import Builder
 ActiveUserData = dict()
+ProgreassBarValue = int()
 
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):
     """
