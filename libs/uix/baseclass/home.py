@@ -1,3 +1,4 @@
+from ctypes import util
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.theming import ThemableBehavior
@@ -65,6 +66,8 @@ class Home_Screen(MDScreen):
                         "Message" : msg_text
                     }
                     # print(number)
+                    if utils.ThreadExitEvent:
+                        exit()
                     self.ListBox.append(number)
                     utils.ProgreassBarValue = (i/FileLen)*100
                     self.sleepThread(.25)
@@ -80,8 +83,13 @@ class Home_Screen(MDScreen):
         """Send sms to all phone numbers"""
         print("Send to all clicked")
         msg_text = self.ids.msg_field.text
-        th1 = threading.Thread(target= self.sendNuberList,args=(msg_text,))
-        th1.start()
+        if utils.SendMSGThread != None:
+            utils.SendMSGThread.killed = True
+            utils.SendMSGThread.join()
+        else:
+            utils.SendMSGThread = threading.Thread(target= self.sendNuberList,args=(msg_text,))
+        
+        utils.SendMSGThread.start()
 
         
 

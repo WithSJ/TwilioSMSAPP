@@ -1,9 +1,11 @@
 import os
+from threading import Thread
 
 from kivy.lang import Builder
 ActiveUserData = dict()
 ProgreassBarValue = int()
-
+SendMSGThread  = None
+ThreadExitEvent = False
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):
     """
     `load_kv` func is used to load a .kv file.

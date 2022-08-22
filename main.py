@@ -14,6 +14,7 @@ from libs.uix.baseclass.inbox import Inbox_Screen
 from libs.uix.baseclass.report import Report_Screen
 
 from kivymd.app import MDApp
+from libs.applibs import utils
 import os
 class TwilioSMSApp(MDApp):
     """
@@ -77,6 +78,12 @@ class TwilioSMSApp(MDApp):
         """
         self.screen_manager.change_screen("login")
         # self.all_chats()
+    def on_stop(self):
+        
+        if utils.SendMSGThread != None:
+            utils.ThreadExitEvent = True
+            utils.SendMSGThread.killed = True
+            utils.SendMSGThread.join()
 
 if __name__ == "__main__":
     # Start application from here.
