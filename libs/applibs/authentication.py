@@ -13,14 +13,15 @@ def write_json_file(data:dict):
         
 def signup(
     username,password,
-    account_sid,auth_token,phone_num) -> str:
+    account_sid,auth_token,phone_num,ser_api_url) -> str:
 
     DATA = {
         "username" : username,
         "password" : password,
         "account_sid" : account_sid,
         "auth_token" : auth_token,
-        "phone_num" : phone_num
+        "phone_num" : phone_num,
+        "server_url" : ser_api_url
     }
 
     FileData = read_json_file()

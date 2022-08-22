@@ -3,20 +3,20 @@
     MDLabel:
         text: app.APP_NAME
         halign: "center"
-        pos_hint: {"center_y": .8}
+        pos_hint: {"center_y": .95}
         font_style: "H3"
     
     MDLabel:
         text: "Sign up"
         halign: "center"
-        pos_hint: {"center_y":.73}
+        pos_hint: {"center_y":.91}
         font_style: "Subtitle2"
         
     
     MDTextField:
         id: username_field
         hint_text: "Username"
-        pos_hint: {"center_x":0.5, "center_y":0.67}
+        pos_hint: {"center_x":0.5, "center_y":0.85}
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
@@ -26,7 +26,7 @@
     MDTextField:
         id: password_field
         hint_text: "Password"
-        pos_hint: {"center_x":0.5, "center_y":0.59}
+        pos_hint: {"center_x":0.5, "center_y":0.75}
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
@@ -36,7 +36,7 @@
     MDTextField:
         id: confirm_password_field
         hint_text: "Confirm Password"
-        pos_hint: {"center_x":0.5, "center_y":0.51}
+        pos_hint: {"center_x":0.5, "center_y":0.65}
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
@@ -46,7 +46,7 @@
     MDTextField:
         id: account_sid
         hint_text: "Twilio Account SID"
-        pos_hint: {"center_x":0.5, "center_y":0.43}
+        pos_hint: {"center_x":0.5, "center_y":0.55}
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
@@ -56,7 +56,7 @@
     MDTextField:
         id: auth_token
         hint_text: "Twilio Auth Token"
-        pos_hint: {"center_x":0.5, "center_y":0.35}
+        pos_hint: {"center_x":0.5, "center_y":0.45}
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
@@ -66,7 +66,16 @@
     MDTextField:
         id: phone_num
         hint_text: "Twilio Phone Number"
-        pos_hint: {"center_x":0.5, "center_y":0.27}
+        pos_hint: {"center_x":0.5, "center_y":0.35}
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        size_hint_x: .4
+        # mode: "rectangle"
+    MDTextField:
+        id: ser_api_url
+        hint_text: "Desktop Server URL"
+        pos_hint: {"center_x":0.5, "center_y":0.25}
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
@@ -77,21 +86,21 @@
         text: "Sign up"
         md_bg_color: "#e7e4c0"
         text_color: "#4a4939"
-        pos_hint: {"center_x": 0.5, "center_y":0.19}
+        pos_hint: {"center_x": 0.5, "center_y":0.15}
         size_hint_x: .5
-        on_release: root.app_signup(username_field,password_field,confirm_password_field,account_sid,auth_token,phone_num)
+        on_release: root.app_signup(username_field,password_field,confirm_password_field,account_sid,auth_token,phone_num,ser_api_url)
     
     MDTextButton:
         text: f"Have an account? Log in"
         markup: True
-        pos_hint: {"center_x":0.5, "center_y":0.11}
+        pos_hint: {"center_x":0.5, "center_y":0.07}
         on_release: app.screen_manager.change_screen("login")
     
     MDLabel:
         text: f"[font=Icons] {md_icons['copyright']}[/font]  [font=Roboto]{app.COMPANY_NAME} 2020[/font]"
         markup: True
         halign: "center"
-        pos_hint: {"center_y":0.05}
+        pos_hint: {"center_y":0.03}
         
         
         

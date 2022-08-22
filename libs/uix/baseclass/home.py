@@ -33,6 +33,7 @@ class Home_Screen(MDScreen):
         
 
     def file_manager_open(self):
+        self.ids.ser_url.text = utils.ActiveUserData["server_url"]
         filechooser.open_file(on_selection=self.select_path,multiple=True)
 
     def select_path(self, path):
