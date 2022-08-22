@@ -89,6 +89,16 @@
     name: "home"
     
     MDTextField:
+        id: ser_url
+        hint_text: "Server URL"
+        mode: "round"
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        pos_hint: {"center_x":0.6, "center_y":0.85}
+        size_hint_x: .4
+
+    MDTextField:
         id: filenamefield
         hint_text: "Filename"
         mode: "round"
@@ -124,7 +134,7 @@
         text: "Send To All"
         md_bg_color: "#e7e4c0"
         text_color: "#4a4939"
-        pos_hint: {"center_x": 0.6, "center_y":0.4}
+        pos_hint: {"center_x": 0.6, "center_y":0.25}
         size_hint_x: .3
         on_release: 
             root.send_to_all()
