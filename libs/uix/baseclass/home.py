@@ -6,12 +6,13 @@ from kivymd.uix.list import MDList
 from kivymd.uix.list import OneLineListItem
 from kivymd.uix.navigationdrawer import MDNavigationLayout
 from kivy.clock import Clock
-from libs.applibs import utils
+from libs.applibs import utils,twilio_api
 from plyer import filechooser
 import threading
 import datetime
 import json
 import time
+
 
 
 utils.load_kv("home.kv")
@@ -24,9 +25,9 @@ class Home_Screen(MDScreen):
         self.sleepThread = time.sleep
 
     def update_on_clock(self,dt):
-        print("Clock",dt) 
+        #print("Clock",dt) 
         self.ids.progressbar.value = utils.ProgreassBarValue
-        print(utils.ProgreassBarValue)
+        # print(utils.ProgreassBarValue)
         if len(self.ListBox) > 0:
             listdata = self.ListBox[0]
             self.ListBox.remove(listdata)
@@ -36,7 +37,7 @@ class Home_Screen(MDScreen):
         
 
     def file_manager_open(self):
-        self.ids.ser_url.text = utils.ActiveUserData["server_url"]
+        utils.ActiveUserData["server_url"]= self.ids.ser_url.text 
         filechooser.open_file(on_selection=self.select_path,multiple=True)
 
     def select_path(self, path):
@@ -68,6 +69,9 @@ class Home_Screen(MDScreen):
                     # print(number)
                     if utils.ThreadExitEvent:
                         exit()
+                    
+
+                    twilio_api.twilio_send_msg(utils.ActiveUserData,msg_text,number)
                     self.ListBox.append(number)
                     utils.ProgreassBarValue = (i/FileLen)*100
                     self.sleepThread(.25)
@@ -82,6 +86,7 @@ class Home_Screen(MDScreen):
     def send_to_all(self):
         """Send sms to all phone numbers"""
         print("Send to all clicked")
+        utils.ActiveUserData["server_url"]= self.ids.ser_url.text 
         msg_text = self.ids.msg_field.text
         if utils.SendMSGThread != None:
             utils.SendMSGThread.killed = True

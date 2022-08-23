@@ -6,6 +6,7 @@ ActiveUserData = dict()
 ProgreassBarValue = int()
 SendMSGThread  = None
 ThreadExitEvent = False
+ServerThread = None
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):
     """
     `load_kv` func is used to load a .kv file.

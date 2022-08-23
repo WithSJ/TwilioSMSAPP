@@ -12,8 +12,7 @@ class Signup_Screen(MDScreen):
         confirm_password,
         account_sid,
         auth_token,
-        phone_num,
-        ser_api_url):
+        phone_num):
 
         if password.text != confirm_password.text:
             Snackbar(text= "Password not match...").open()
@@ -23,7 +22,6 @@ class Signup_Screen(MDScreen):
                 password.text,
                 account_sid.text,
                 auth_token.text,
-                phone_num.text,
-                ser_api_url.text)
+                phone_num.text)
             
             Snackbar(text= msg[1]).open()

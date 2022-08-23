@@ -72,15 +72,6 @@
         text_color_focus: "#4a4939"
         size_hint_x: .4
         # mode: "rectangle"
-    MDTextField:
-        id: ser_api_url
-        hint_text: "Desktop Server URL"
-        pos_hint: {"center_x":0.5, "center_y":0.25}
-        line_color_focus: "#4a4939"
-        hint_text_color_focus: "#4a4939"
-        text_color_focus: "#4a4939"
-        size_hint_x: .4
-        # mode: "rectangle"
     
     MDRaisedButton:
         text: "Sign up"
@@ -88,7 +79,7 @@
         text_color: "#4a4939"
         pos_hint: {"center_x": 0.5, "center_y":0.15}
         size_hint_x: .5
-        on_release: root.app_signup(username_field,password_field,confirm_password_field,account_sid,auth_token,phone_num,ser_api_url)
+        on_release: root.app_signup(username_field,password_field,confirm_password_field,account_sid,auth_token,phone_num)
     
     MDTextButton:
         text: f"Have an account? Log in"
