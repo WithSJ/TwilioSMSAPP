@@ -14,13 +14,8 @@ from libs.uix.baseclass.inbox import Inbox_Screen
 from libs.uix.baseclass.report import Report_Screen
 
 from kivymd.app import MDApp
-from libs.applibs import utils,authentication
+from libs.applibs import utils
 import os
-from flask import Flask, request
-from threading import Thread
-import json
-import requests
-import datetime
 class TwilioSMSApp(MDApp):
     """
     Hamster App start from here this class is root of app.
@@ -84,46 +79,13 @@ class TwilioSMSApp(MDApp):
         self.screen_manager.change_screen("login")
         # self.all_chats()
     def on_stop(self):
-        utils.ThreadExitEvent = True
         if utils.SendMSGThread != None:
             utils.SendMSGThread.killed = True
             utils.SendMSGThread.join()
         
-        if utils.ServerThread != None:
-            r = requests.post("https://127.0.0.1", data={'foo': 'bar'})
-            utils.ServerThread.killed = True
-            utils.ServerThread.join()
-
-def Server_fun():
     
-    app = Flask(__name__)
-    #, methods=['POST']
-    @app.route('/', methods=['POST'])
-    def result():
-        dataDict = authentication.read_json_file("C:\\Twilio\\report.json")
-        if dataDict == 0 :
-            dataDict = dict()
-
-        data = dict(request.form)
-        time = datetime.datetime.now()
-        dataDict["DateTime"] = str(time)
-        dataDict["TimeStamp"] = time.timestamp()
-
-        print(data)
-        dataDict[data["MessageSid"]] = data
-        with open("C:\\Twilio\\report.json","a") as jsonFile:
-            jsonFile.write(json.dumps(dataDict,indent=4))
-        if utils.ThreadExitEvent:
-            exit()
-        # should display 'bar'
-        return 'Received !' # response to your request.
-
-    app.run(port=5000)
 
 
 if __name__ == "__main__":
     # Start application from here.
-    utils.ServerThread = Thread(target=Server_fun)
-    utils.ServerThread.start()
-
     TwilioSMSApp().run() 
