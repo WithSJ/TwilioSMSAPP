@@ -22,7 +22,7 @@ def signup(
     else:
         FileData= {username : DATA}
     
-    write_json_file(FileData)
+    write_json_file(Filename=utils.AuthDataFile,data= FileData)
     return True,"Account created."
 
 

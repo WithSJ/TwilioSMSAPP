@@ -7,7 +7,8 @@ ProgreassBarValue = int()
 SendMSGThread  = None
 ThreadExitEvent = False
 ServerThread = None
-UserDataFile = f"C:\\Twilio\\{ActiveUserData['username']}_report.json"
+
+UserDataFile = None 
 ReportDataFile = "C:\\Twilio\\report.json"
 AuthDataFile = "C:\\Twilio\\auth.json"
 FolderPath = "C:\Twilio"
@@ -19,8 +20,8 @@ def read_json_file(Filename = AuthDataFile ):
     except:
         return 0
 
-def write_json_file(data:dict):
-    with open(AuthDataFile,"w") as jsonFile:
+def write_json_file(Filename = AuthDataFile,data=dict()):
+    with open(Filename,"w") as jsonFile:
         jsonFile.write(json.dumps(data,indent=4))
 
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):

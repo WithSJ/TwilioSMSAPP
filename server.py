@@ -7,19 +7,28 @@ app = Flask(__name__)
 #, methods=['POST']
 @app.route('/', methods=['POST'])
 def result():
-    dataDict = authentication.read_json_file("C:\\Twilio\\report.json")
-    if dataDict == 0 :
-        dataDict = dict()
-
-    data = dict(request.form)
+    Report = dict(request.form)
     time = datetime.datetime.now()
-    dataDict["DateTime"] = str(time)
-    dataDict["TimeStamp"] = time.timestamp()
-    dataDict[data["MessageSid"]] = data
-    with open(utils.ReportDataFile,"a") as jsonFile:
-        jsonFile.write(json.dumps(dataDict,indent=4))
+
+    Report["DateTime"] = str(time)
+    Report["TimeStamp"] = time.timestamp()
+    
+    reportdatafile = utils.read_json_file(utils.ReportDataFile)
+    if reportdatafile == 0 :
+        writeData = dict()
+        writeData[Report["MessageSid"]] = Report
+        
+    else:
+        reportdatafile[Report["MessageSid"]] = Report
+        writeData = reportdatafile
+    
+    utils.write_json_file(utils.ReportDataFile,writeData)
+
+        
+    # with open(utils.ReportDataFile,"a") as jsonFile:
+    #     jsonFile.write(json.dumps(dataDict,indent=4))
     
     # should display 'bar'
-    return 'Received !' # response to your request.
+    # return 'Received !' # response to your request.
 
 app.run(port=5000)

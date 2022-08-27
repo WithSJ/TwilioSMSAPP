@@ -66,7 +66,7 @@ class Home_Screen(MDScreen):
                     time = datetime.datetime.now()
                     
                     msgRespSid =  twilio_api.twilio_send_msg(utils.ActiveUserData,msg_text,number)
-                    Report[number] = {
+                    Report = {
                         "DateTime" : str(time),
                         "TimeStamp" : time.timestamp(),
                         "Number" : number,
@@ -86,8 +86,18 @@ class Home_Screen(MDScreen):
                     
                     
         # print("Active USer",utils.ActiveUserData)
-        with open(utils.UserDataFile,"a") as jsonFile:
-            jsonFile.write(json.dumps(Report,indent=4))
+        usrdatafile = utils.read_json_file(utils.UserDataFile)
+        if usrdatafile == 0 :
+            writeData = dict()
+            writeData[Report["Number"]] = Report
+            
+        else:
+            usrdatafile[Report["Number"]] = Report
+            writeData = usrdatafile
+            
+        utils.write_json_file(utils.UserDataFile,writeData)
+        # with open(utils.UserDataFile,"a") as jsonFile:
+        #     jsonFile.write(json.dumps(Report,indent=4))
 
 
     def send_to_all(self):
