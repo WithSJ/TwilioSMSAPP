@@ -22,10 +22,9 @@ class Report_Screen(MDScreen):
                 ("No.", dp(30)),
                 ("Status", dp(30)),
                 ("Phone Number", dp(60)),
-                ("Severity", dp(30)),
-                ("Stage", dp(30)),
-                ("Schedule", dp(30), lambda *args: print("Sorted using Schedule")),
-                ("Team Lead", dp(30)),
+                ("MessageSid", dp(30)),
+                ("DateTime", dp(30)),
+                ("Message", dp(30), lambda *args: print("Sorted using Schedule")),
             ],
             row_data=[
                 # The number of elements must match the length
