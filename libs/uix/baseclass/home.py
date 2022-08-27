@@ -50,28 +50,35 @@ class Home_Screen(MDScreen):
         self.path = path
         self.ids.filenamefield.text = ", ".join(path)
     def sendNuberList(self,msg_text):
+
         Report= dict()
         for selected_file in self.path:
+
             with open(selected_file) as filedata:
                 NumFileData = set(filedata.readlines())
                 FileLen = len(NumFileData)
                 i = 0
+                
                 for number in NumFileData:
                     i+=1
                     number = str(number).removesuffix("\n")
+
                     time = datetime.datetime.now()
+                    
+                    msgRespSid =  twilio_api.twilio_send_msg(utils.ActiveUserData,msg_text,number)
                     Report[number] = {
                         "DateTime" : str(time),
                         "TimeStamp" : time.timestamp(),
                         "Number" : number,
-                        "Message" : msg_text
+                        "Message" : msg_text,
+                        "SID" : msgRespSid
                     }
                     # print(number)
                     if utils.ThreadExitEvent:
                         exit()
                     
 
-                    twilio_api.twilio_send_msg(utils.ActiveUserData,msg_text,number)
+                    
                     self.ListBox.append(number)
                     utils.ProgreassBarValue = (i/FileLen)*100
                     self.sleepThread(.25)

@@ -14,12 +14,13 @@ from libs.uix.baseclass.inbox import Inbox_Screen
 from libs.uix.baseclass.report import Report_Screen
 
 from kivymd.app import MDApp
-from libs.applibs import utils
+from libs.applibs import utils,authentication
 import os
 from flask import Flask, request
 from threading import Thread
 import json
 import requests
+import datetime
 class TwilioSMSApp(MDApp):
     """
     Hamster App start from here this class is root of app.
@@ -99,10 +100,19 @@ def Server_fun():
     #, methods=['POST']
     @app.route('/', methods=['POST'])
     def result():
+        dataDict = authentication.read_json_file("C:\\Twilio\\report.json")
+        if dataDict == 0 :
+            dataDict = dict()
+
         data = dict(request.form)
+        time = datetime.datetime.now()
+        dataDict["DateTime"] = str(time)
+        dataDict["TimeStamp"] = time.timestamp()
+
         print(data)
+        dataDict[data["MessageSid"]] = data
         with open("C:\\Twilio\\report.json","a") as jsonFile:
-            jsonFile.write(json.dumps(data,indent=4))
+            jsonFile.write(json.dumps(dataDict,indent=4))
         if utils.ThreadExitEvent:
             exit()
         # should display 'bar'

@@ -1,8 +1,8 @@
 import json
 from libs.applibs import utils
-def read_json_file():
+def read_json_file(Filename = "C:\\Twilio\\auth.json" ):
     try:
-        with open("C:\\Twilio\\auth.json") as jsonFile:
+        with open(Filename) as jsonFile:
             return json.load(jsonFile)
     except:
         return 0

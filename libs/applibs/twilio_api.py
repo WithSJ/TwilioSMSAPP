@@ -12,6 +12,4 @@ def twilio_send_msg(activerUser,message,phoneNumber):
                         to=phoneNumber,
                         status_callback=activerUser["server_url"]
                     )
-    with open("C:\\Twilio\\twilio.txt","a") as datafile:
-        print(message)
-        datafile.write(str(message))
+    return message.sid
