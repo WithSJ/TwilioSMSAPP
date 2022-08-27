@@ -1,15 +1,6 @@
 import json
 from libs.applibs import utils
-def read_json_file(Filename = utils.AuthDataFile ):
-    try:
-        with open(Filename) as jsonFile:
-            return json.load(jsonFile)
-    except:
-        return 0
-
-def write_json_file(data:dict):
-    with open(utils.AuthDataFile,"w") as jsonFile:
-        jsonFile.write(json.dumps(data,indent=4))
+from libs.applibs.utils import read_json_file,write_json_file
         
 def signup(
     username,password,
@@ -23,7 +14,7 @@ def signup(
         "phone_num" : phone_num
     }
 
-    FileData = read_json_file()
+    FileData = read_json_file(utils.AuthDataFile)
     if FileData != 0:
         if username in FileData:
             return False,"Username already taken."
@@ -37,7 +28,7 @@ def signup(
 
     
 def login(username,password):
-    FileData = read_json_file()
+    FileData = read_json_file(utils.AuthDataFile)
     if FileData != 0:
         if username in FileData:
             if FileData[username]["password"] == password:

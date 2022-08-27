@@ -1,7 +1,7 @@
-import os
-from threading import Thread
-
 from kivy.lang import Builder
+import json,os
+
+
 ActiveUserData = dict()
 ProgreassBarValue = int()
 SendMSGThread  = None
@@ -11,6 +11,18 @@ UserDataFile = f"C:\\Twilio\\{ActiveUserData['username']}_report.json"
 ReportDataFile = "C:\\Twilio\\report.json"
 AuthDataFile = "C:\\Twilio\\auth.json"
 FolderPath = "C:\Twilio"
+
+def read_json_file(Filename = AuthDataFile ):
+    try:
+        with open(Filename) as jsonFile:
+            return json.load(jsonFile)
+    except:
+        return 0
+
+def write_json_file(data:dict):
+    with open(AuthDataFile,"w") as jsonFile:
+        jsonFile.write(json.dumps(data,indent=4))
+
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):
     """
     `load_kv` func is used to load a .kv file.
