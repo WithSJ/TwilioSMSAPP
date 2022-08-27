@@ -28,7 +28,7 @@ class TwilioSMSApp(MDApp):
         self.APP_NAME = "Twilio SMS App"
         self.COMPANY_NAME = "Develop By Sandeep Jadam"
         try:
-            os.mkdir("C:\Twilio")
+            os.mkdir(utils.FolderPath)
         except:
             pass
         

@@ -1,6 +1,6 @@
 import json
 from libs.applibs import utils
-def read_json_file(Filename = "C:\\Twilio\\auth.json" ):
+def read_json_file(Filename = utils.AuthDataFile ):
     try:
         with open(Filename) as jsonFile:
             return json.load(jsonFile)
@@ -8,7 +8,7 @@ def read_json_file(Filename = "C:\\Twilio\\auth.json" ):
         return 0
 
 def write_json_file(data:dict):
-    with open("C:\\Twilio\\auth.json","w") as jsonFile:
+    with open(utils.AuthDataFile,"w") as jsonFile:
         jsonFile.write(json.dumps(data,indent=4))
         
 def signup(

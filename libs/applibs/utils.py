@@ -7,6 +7,10 @@ ProgreassBarValue = int()
 SendMSGThread  = None
 ThreadExitEvent = False
 ServerThread = None
+UserDataFile = f"C:\\Twilio\\{ActiveUserData['username']}_report.json"
+ReportDataFile = "C:\\Twilio\\report.json"
+AuthDataFile = "C:\\Twilio\\auth.json"
+FolderPath = "C:\Twilio"
 def load_kv(file_name, file_path=os.path.join("libs", "uix", "kv")):
     """
     `load_kv` func is used to load a .kv file.

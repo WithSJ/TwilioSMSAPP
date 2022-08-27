@@ -1,5 +1,5 @@
 from flask import Flask, request
-from libs.applibs import authentication
+from libs.applibs import authentication,utils
 import datetime
 import json
 
@@ -16,7 +16,7 @@ def result():
     dataDict["DateTime"] = str(time)
     dataDict["TimeStamp"] = time.timestamp()
     dataDict[data["MessageSid"]] = data
-    with open("C:\\Twilio\\report.json","a") as jsonFile:
+    with open(utils.ReportDataFile,"a") as jsonFile:
         jsonFile.write(json.dumps(dataDict,indent=4))
     
     # should display 'bar'
