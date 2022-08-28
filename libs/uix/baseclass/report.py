@@ -5,6 +5,7 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivymd.uix.datatables import MDDataTable
 from kivy.metrics import dp
+from kivy.clock import Clock
 from libs.applibs import utils
 import json
 utils.load_kv("report.kv")
@@ -23,36 +24,66 @@ class Report_Screen(MDScreen):
             column_data=[
                 ("No.", dp(30)),
                 ("Status", dp(30)),
-                ("Phone Number", dp(60)),
-                ("MessageSid", dp(30)),
-                ("DateTime", dp(30)),
-                ("Message", dp(30)),
+                ("To_Phone", dp(30)),
+                ("From_Phone", dp(30)),
+                ("Message_Sid", dp(80)),
+                ("Date_Time", dp(50)),
+                ("Account_Sid", dp(80))
             ]
             
         )
-
-        self.ids.data_table.add_widget(self.data_tables)
         self.load_data_row()
+        
+        self.ids.data_table.add_widget(self.data_tables)
+        # self.ClockRunning = Clock.schedule_interval(self.update_on_clock, 5)
 
+   
+    
     def load_data_row(self):
         # allData = dict()
         # with open(utils.UserDataFile) as userdata:
         #     with open(utils.ReportDataFile) as reportdata:
         #         udata = json.load(userdata)
         #         for 
+        reportData = utils.read_json_file(Filename=utils.ReportDataFile)
+        num = int()
+        if reportData != 0:
+            for key_data,val_data in dict(reportData).items():
+                num +=1
+                smsStatusIcon = None
+                if dict(val_data).get("SmsStatus") == "delivered":
+                    smsStatusIcon= "checkbox-marked-circle",[39 / 256, 174 / 256, 96 / 256, 1]
+                elif dict(val_data).get("SmsStatus") == "sent":
+                    smsStatusIcon= "alert", [255 / 256, 165 / 256, 0, 1]
+                else:
+                    smsStatusIcon= "alert-circle", [1, 0, 0, 1]
 
 
-        data = (
-                    "1",
-                    ("alert", [255 / 256, 165 / 256, 0, 1], "No Signal"),
-                    "+918058458276",
-                    "message ssid",
-                    "17-08-2000 5:45",
-                    "Hello world",
-                )
+                data = (
+                            str(num),
+                            # dict(val_data).get("SmsStatus"),
+                            (smsStatusIcon[0], smsStatusIcon[1], dict(val_data).get("SmsStatus")),
+                            dict(val_data).get("To"),
+                            dict(val_data).get("From"),
+                            dict(val_data).get("MessageSid"),
+                            dict(val_data).get("DateTime"),
+                            dict(val_data).get("AccountSid")
+                        )
 
-        self.data_tables.row_data.append(data)
+                self.data_tables.row_data.append(data)
         
+
+
+        
+        
+    def update_on_clock(self,dt):
+        print("Not Report")
+        if utils.StartReport:
+            print("-----------YEs Report")
+            self.load_data_row()
+            utils.StartReport = False
+            
+            self.ClockRunning.cancel()
 
         
 

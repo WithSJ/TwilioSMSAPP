@@ -7,7 +7,7 @@ ProgreassBarValue = int()
 SendMSGThread  = None
 ThreadExitEvent = False
 ServerThread = None
-
+StartReport = False
 UserDataFile = None 
 ReportDataFile = "C:\\Twilio\\report.json"
 AuthDataFile = "C:\\Twilio\\auth.json"

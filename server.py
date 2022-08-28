@@ -29,6 +29,6 @@ def result():
     #     jsonFile.write(json.dumps(dataDict,indent=4))
     
     # should display 'bar'
-    # return 'Received !' # response to your request.
+    return 'Received !' # response to your request.
 
 app.run(port=5000)
