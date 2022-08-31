@@ -11,5 +11,7 @@ class Login_Screen(MDScreen):
             utils.UserDataFile = f"C:\\Twilio\\{utils.ActiveUserData['username']}_report.json"
             Snackbar(text= msg[1]).open()
             utils.StartReport = True
+        else:
+            Snackbar(text= msg[1]).open()
         return msg[0]
 

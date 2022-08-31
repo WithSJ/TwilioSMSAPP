@@ -88,10 +88,10 @@ class Home_Screen(MDScreen):
         usrdatafile = utils.read_json_file(utils.UserDataFile)
         if usrdatafile == 0 :
             writeData = dict()
-            writeData[Report["Number"]] = Report
+            writeData[Report["SID"]] = Report
             
         else:
-            usrdatafile[Report["Number"]] = Report
+            usrdatafile[Report["SID"]] = Report
             writeData = usrdatafile
             
         utils.write_json_file(utils.UserDataFile,writeData)
