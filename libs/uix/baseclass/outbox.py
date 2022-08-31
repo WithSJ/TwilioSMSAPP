@@ -1,4 +1,3 @@
-from cgitb import text
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.theming import ThemableBehavior
@@ -6,23 +5,37 @@ from kivymd.uix.list import MDList,OneLineListItem
 from kivymd.uix.label import MDLabel
 from kivymd.uix.card import MDCard, MDSeparator
 from libs.applibs import utils
+from kivy.clock import Clock
 
 utils.load_kv("outbox.kv")
 
 class Outbox_Screen(MDScreen):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.INList = list()
+        self.ClockRunning = Clock.schedule_interval(self.update_outlist, 1)
+        
        
     
-    
-    def update_outlist(self):
+    def on_list_press(self,event):
+        print("Click ",event.text)
+        self.send_msg(event.text)
+        
+    def update_outlist(self,dt):
         filedata = utils.read_json_file(Filename=utils.UserDataFile)
         if filedata != 0:
-            for k,v in dict(filedata):
-                print(v)
-                self.ids.container.add_widget(
-                    OneLineListItem(text=k)
-                )
+            for k in dict(filedata):
+                if filedata[k]["Number"] not in self.INList:
+                    print(filedata[k]["Number"])
+                    self.ids.container.add_widget(
+                        OneLineListItem(text=filedata[k]["Number"],on_press=self.on_list_press)
+                    )
+
+                    self.INList.append(filedata[k]["Number"])
+
+        
+
+
 
     def chat_textbox(self):
         """
@@ -44,7 +57,7 @@ class Outbox_Screen(MDScreen):
             When send button use to send msg this function call
             and clear MSGbox 
         """
-        self.update_outlist()
+        
         text_msg = MDLabel(text=msg_data,halign="left")
         
         sizeX = self.ids.msg_textbox.size[0]    
