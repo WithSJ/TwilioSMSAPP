@@ -17,10 +17,20 @@
 <Outbox_Screen>:
     name: "outbox"
     
+    MDTextField:
+        id: list_filter
+        hint_text: "Filter"
+        mode: "rectangle"
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        pos_hint: {"center_x":0.25, "center_y":0.85}
+        size_hint_x: .4
+        on_text: root.filter_list(list_filter.text)
 
     ScrollView:
         pos_hint: {"center_x":0.25, "center_y":.5}
-        size_hint: .4,.7
+        size_hint: .4,.6
         MDList:
             id: container
             

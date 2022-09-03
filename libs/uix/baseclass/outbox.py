@@ -33,6 +33,15 @@ class Outbox_Screen(MDScreen):
                 else:
                     continue
         
+    def filter_list(self,text):
+        self.ids.container.clear_widgets()
+        # print(text)    
+        for num in self.INList:
+            if text in num:
+                self.ids.container.add_widget(
+                    OneLineListItem(text=num,on_press=self.on_list_press)
+                )
+
     def update_outlist(self,dt):
         filedata = utils.read_json_file(Filename=utils.UserDataFile)
         if filedata != 0:
@@ -122,7 +131,7 @@ class Outbox_Screen(MDScreen):
 
         )
         msg_card.add_widget(MDLabel(
-            text= f"{number_data} {' '*4} {time_data}",
+            text= f"To :> {number_data} {' '*4} Date&Time :> {time_data}",
             theme_text_color= "Secondary",
             size_hint_y= None,
             height= 50
