@@ -1,11 +1,14 @@
+import imp
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList,OneLineListItem
 from kivymd.uix.label import MDLabel
 from kivymd.uix.card import MDCard, MDSeparator
-from libs.applibs import utils
+from kivymd.uix.snackbar import Snackbar
+from libs.applibs import utils,twilio_api
 from kivy.clock import Clock
+import datetime
 
 utils.load_kv("outbox.kv")
 
@@ -14,12 +17,21 @@ class Outbox_Screen(MDScreen):
         super().__init__(*args, **kwargs)
         self.INList = list()
         self.ClockRunning = Clock.schedule_interval(self.update_outlist, 1)
+        self.SelectedNumber = None
         
        
     
     def on_list_press(self,event):
-        print("Click ",event.text)
-        self.send_msg(event.text)
+        self.SelectedNumber = event.text
+        self.ids.all_msgs.clear_widgets()
+        filedata = utils.read_json_file(utils.UserDataFile)
+        if filedata != 0:
+            for k in dict(filedata):
+                data = filedata[k]
+                if data["Number"] == event.text:
+                    self.send_msg(data["Message"],data["DateTime"],data["Number"])
+                else:
+                    continue
         
     def update_outlist(self,dt):
         filedata = utils.read_json_file(Filename=utils.UserDataFile)
@@ -52,7 +64,38 @@ class Outbox_Screen(MDScreen):
         else:
             self.ids.send_card.size[1]=fixed_Y_size
 
-    def send_msg(self,msg_data):
+    def click_send_msg(self,msg_data,server_url):
+        time = datetime.datetime.now()
+        if self.SelectedNumber == None:
+            Snackbar(text= "Select Number from List").open()
+        elif len(server_url) < 5:
+            Snackbar(text= "Server URL Problem.").open()
+        else:
+            time = datetime.datetime.now()
+            utils.ActiveUserData["server_url"] = server_url
+            msgRespSid =twilio_api.twilio_send_msg(utils.ActiveUserData,msg_data,self.SelectedNumber)
+            # msgRespSid =  twilio_api.twilio_send_msg(utils.ActiveUserData,msg_text,number)
+            Report = {
+                "DateTime" : str(time),
+                "TimeStamp" : time.timestamp(),
+                "Number" : self.SelectedNumber,
+                "Message" : msg_data,
+                "SID" : msgRespSid
+            }
+            usrdatafile = utils.read_json_file(utils.UserDataFile)
+            if usrdatafile == 0 :
+                writeData = dict()
+                writeData[Report["SID"]] = Report
+                
+            else:
+                usrdatafile[Report["SID"]] = Report
+                writeData = usrdatafile
+                
+            utils.write_json_file(utils.UserDataFile,writeData)
+            self.send_msg(msg_data,str(time),self.SelectedNumber)
+    
+
+    def send_msg(self,msg_data,time_data,number_data):
         """
             When send button use to send msg this function call
             and clear MSGbox 
@@ -79,7 +122,7 @@ class Outbox_Screen(MDScreen):
 
         )
         msg_card.add_widget(MDLabel(
-            text= f"Hamster {' '*8} |1:00 PM|",
+            text= f"{number_data} {' '*4} {time_data}",
             theme_text_color= "Secondary",
             size_hint_y= None,
             height= 50

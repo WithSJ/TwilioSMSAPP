@@ -17,6 +17,7 @@
 <Outbox_Screen>:
     name: "outbox"
     
+
     ScrollView:
         pos_hint: {"center_x":0.25, "center_y":.5}
         size_hint: .4,.7
@@ -31,7 +32,6 @@
         pos_hint: {"center_x":0.7, "center_y":.5}
         size_hint: .4,.7
         
-    
         ScrollView:
             id: msg_scroll_view
             MDList:
@@ -57,6 +57,20 @@
                 
             MDIconButton:
                 icon:"send"
-                on_release: root.send_msg(msg_textbox.text)
+                on_release: root.click_send_msg(msg_textbox.text, ser_url.text)
+
+
+    MDTextField:
+        id: ser_url
+        hint_text: "Server URL"
+        mode: "round"
+        line_color_focus: "#4a4939"
+        hint_text_color_focus: "#4a4939"
+        text_color_focus: "#4a4939"
+        pos_hint: {"center_x":0.7, "center_y":0.1}
+        size_hint_x: .4
+        
     SideNavMenu:
         #SideNavMenu
+    
+    
