@@ -16,6 +16,12 @@ class Report_Screen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        self.load_data_table()
+        
+        # self.ClockRunning = Clock.schedule_interval(self.update_on_clock, 5)
+
+    
+    def load_data_table(self):
         self.data_tables = MDDataTable(
             size_hint=(1, 1),
             pos_hint= {"center_x":0.5, "center_y":0.5},
@@ -32,13 +38,10 @@ class Report_Screen(MDScreen):
             ]
             
         )
-        self.load_data_row()
-        
-        self.ids.data_table.add_widget(self.data_tables)
-        # self.ClockRunning = Clock.schedule_interval(self.update_on_clock, 5)
 
+        self.load_data_row()
+        self.ids.data_table.add_widget(self.data_tables)
    
-    
     def load_data_row(self):
         # allData = dict()
         # with open(utils.UserDataFile) as userdata:
@@ -48,7 +51,7 @@ class Report_Screen(MDScreen):
         reportData = utils.read_json_file(Filename=utils.ReportDataFile)
         num = int()
         if reportData != 0:
-            for key_data,val_data in dict(reportData).items():
+            for key_data,val_data in list(dict(reportData).items())[::-1]:
                 num +=1
                 smsStatusIcon = None
                 if dict(val_data).get("SmsStatus") == "delivered":

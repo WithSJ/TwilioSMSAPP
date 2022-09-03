@@ -16,10 +16,23 @@
 
 <Report_Screen>:
     name: "report"
+    
+
     MDBoxLayout:
         id: data_table
         size_hint: (0.8, 0.8)
         pos_hint: {"center_x":0.5, "center_y":0.5}
 
+    MDRaisedButton:
+        text: "Reload..."
+        md_bg_color: "#e7e4c0"
+        text_color: "#4a4939"
+        pos_hint: {"center_x":0.2, "center_y":.135}
+        on_release:
+            data_table.clear_widgets()
+            root.load_data_table()
+
+
     SideNavMenu:
         #SideNavMenu
+    
