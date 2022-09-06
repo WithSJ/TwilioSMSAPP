@@ -23,8 +23,8 @@
         pos_hint: {"top": 1}
         md_bg_color: "#e7e4c0"
         specific_text_color: "#4a4939"
-        right_action_items: 
-            [ ["account", lambda x:app.screen_manager.change_screen("profile")]] 
+        #right_action_items: 
+        #    [ ["account", lambda x:app.screen_manager.change_screen("profile")]] 
         left_action_items:
             [['menu', lambda x: nav_drawer.set_state("open")]]
 
@@ -69,20 +69,11 @@
 
             MDNavigationDrawerDivider:
 
-            MDNavigationDrawerLabel:
-                text: "Labels"
-
-            DrawerLabelItem:
-                icon: "information-outline"
-                text: "Label"
-
-            DrawerLabelItem:
-                icon: "information-outline"
-                text: "Label"
-
+            
             DrawerClickableItem:
                 icon: "logout"
                 text: "Logout"
+                on_release: exit()
             
     
 <Home_Screen>:
