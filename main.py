@@ -1,3 +1,12 @@
+"""
+Application Devloped by Sandeep Jadam
+Email : withsj.in@gmail.com
+Made in India Software
+
+
+
+"""
+
 from kivy.core.window import Window
 Window.maximize()
 
@@ -24,7 +33,7 @@ class TwilioSMSApp(MDApp):
 
     def __init__(self, **kwargs):
         super(TwilioSMSApp, self).__init__(**kwargs)
-        
+        self.icon = "Assets\\icon.ico"
         self.APP_NAME = "Twilio SMS App"
         self.COMPANY_NAME = "Develop By Sandeep Jadam"
         try:
@@ -88,4 +97,10 @@ class TwilioSMSApp(MDApp):
 
 if __name__ == "__main__":
     # Start application from here.
+    try:
+        import pyi_splash
+        pyi_splash.update_text("GMAP UI Loaded...")
+        pyi_splash.close()
+    except:
+        pass
     TwilioSMSApp().run() 
