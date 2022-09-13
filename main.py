@@ -6,11 +6,11 @@ Made in India Software
 
 
 """
-from threading import Thread
-from server import TwilioAppServer
-global AppServer
-AppServer = Thread(target=TwilioAppServer)
-AppServer.start()
+# from threading import Thread
+# from server import TwilioAppServer
+# global AppServer
+# AppServer = Thread(target=TwilioAppServer)
+# AppServer.start()
 
 from kivy.core.window import Window
 Window.maximize()
@@ -97,11 +97,11 @@ class TwilioSMSApp(MDApp):
             utils.SendMSGThread.killed = True
             utils.SendMSGThread.join()
 
-            global AppServer
-            AppServer.killed = True
-            AppServer.join()
-            AppServer.killed = True
-            AppServer.join()
+            # global AppServer
+            # AppServer.killed = True
+            # AppServer.join()
+            # AppServer.killed = True
+            # AppServer.join()
     
 
 
