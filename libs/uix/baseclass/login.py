@@ -13,5 +13,7 @@ class Login_Screen(MDScreen):
             utils.StartReport = True
         else:
             Snackbar(text= msg[1]).open()
+        
+        self.ids.password_field.text = ""
         return msg[0]
 

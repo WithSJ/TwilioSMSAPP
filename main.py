@@ -6,6 +6,11 @@ Made in India Software
 
 
 """
+from threading import Thread
+from server import TwilioAppServer
+global AppServer
+AppServer = Thread(target=TwilioAppServer)
+AppServer.start()
 
 from kivy.core.window import Window
 Window.maximize()
@@ -35,7 +40,7 @@ class TwilioSMSApp(MDApp):
         super(TwilioSMSApp, self).__init__(**kwargs)
         self.icon = "Assets\\icon.ico"
         self.APP_NAME = "Twilio SMS App"
-        self.COMPANY_NAME = "Develop By Sandeep Jadam"
+        self.COMPANY_NAME = "Developed By Sandeep Jadam"
         try:
             os.mkdir(utils.FolderPath)
         except:
@@ -91,7 +96,12 @@ class TwilioSMSApp(MDApp):
         if utils.SendMSGThread != None:
             utils.SendMSGThread.killed = True
             utils.SendMSGThread.join()
-        
+
+            global AppServer
+            AppServer.killed = True
+            AppServer.join()
+            AppServer.killed = True
+            AppServer.join()
     
 
 

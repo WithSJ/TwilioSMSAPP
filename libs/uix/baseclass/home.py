@@ -104,10 +104,12 @@ class Home_Screen(MDScreen):
         print("Send to all clicked")
         utils.ActiveUserData["server_url"]= self.ids.ser_url.text 
         msg_text = self.ids.msg_field.text
-        if utils.SendMSGThread != None:
+        try:
             utils.SendMSGThread.killed = True
             utils.SendMSGThread.join()
-        else:
+        except:
+            pass
+        finally:
             utils.SendMSGThread = threading.Thread(target= self.sendNuberList,args=(msg_text,))
         
         utils.SendMSGThread.start()

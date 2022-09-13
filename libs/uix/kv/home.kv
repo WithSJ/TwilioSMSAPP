@@ -73,7 +73,7 @@
             DrawerClickableItem:
                 icon: "logout"
                 text: "Logout"
-                on_release: exit()
+                on_release: app.screen_manager.change_screen("login")
             
     
 <Home_Screen>:
@@ -86,7 +86,7 @@
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
-        pos_hint: {"center_x":0.6, "center_y":0.85}
+        pos_hint: {"center_x":0.6, "center_y":0.82}
         size_hint_x: .4
 
     MDTextField:
@@ -96,14 +96,14 @@
         line_color_focus: "#4a4939"
         hint_text_color_focus: "#4a4939"
         text_color_focus: "#4a4939"
-        pos_hint: {"center_x":0.6, "center_y":0.8}
+        pos_hint: {"center_x":0.6, "center_y":0.75}
         size_hint_x: .4
     
     MDRaisedButton:
         text: "Select File"
         md_bg_color: "#e7e4c0"
         text_color: "#4a4939"
-        pos_hint: {"center_x":0.88, "center_y":0.8}
+        pos_hint: {"center_x":0.88, "center_y":0.75}
         size_hint_x: .1
         on_release: root.file_manager_open()
     
@@ -118,20 +118,20 @@
         size_hint: .4,.3
         multiline: True
         max_text_length: 320
-        pos_hint: {"center_x":0.6, "center_y":0.6}
+        pos_hint: {"center_x":0.6, "center_y":0.55}
      
     MDProgressBar:
         id: progressbar
         color: "#4a4939"
         size_hint_x: .4
-        pos_hint: {"center_x": 0.6, "center_y":0.35}
+        pos_hint: {"center_x": 0.6, "center_y":0.3}
         value: 50
 
     MDRaisedButton:
         text: "Send To All"
         md_bg_color: "#e7e4c0"
         text_color: "#4a4939"
-        pos_hint: {"center_x": 0.6, "center_y":0.25}
+        pos_hint: {"center_x": 0.6, "center_y":0.2}
         size_hint_x: .3
         on_release: 
             root.send_to_all()

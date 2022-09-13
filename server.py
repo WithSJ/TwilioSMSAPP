@@ -1,34 +1,33 @@
 from flask import Flask, request
-from libs.applibs import authentication,utils
+from libs.applibs import utils
 import datetime
-import json
 
-app = Flask(__name__)
-#, methods=['POST']
-@app.route('/', methods=['POST'])
-def result():
-    Report = dict(request.form)
-    time = datetime.datetime.now()
+def TwilioAppServer():
+    app = Flask(__name__)
+    #, methods=['POST']
+    @app.route('/', methods=['POST'])
+    def result():
+        Report = dict(request.form)
+        time = datetime.datetime.now()
 
-    Report["DateTime"] = str(time)
-    Report["TimeStamp"] = time.timestamp()
-    
-    reportdatafile = utils.read_json_file(utils.ReportDataFile)
-    if reportdatafile == 0 :
-        writeData = dict()
-        writeData[Report["MessageSid"]] = Report
+        Report["DateTime"] = str(time)
+        Report["TimeStamp"] = time.timestamp()
         
-    else:
-        reportdatafile[Report["MessageSid"]] = Report
-        writeData = reportdatafile
-    
-    utils.write_json_file(utils.ReportDataFile,writeData)
-
+        reportdatafile = utils.read_json_file(utils.ReportDataFile)
+        if reportdatafile == 0 :
+            writeData = dict()
+            writeData[Report["MessageSid"]] = Report
+            
+        else:
+            reportdatafile[Report["MessageSid"]] = Report
+            writeData = reportdatafile
         
-    # with open(utils.ReportDataFile,"a") as jsonFile:
-    #     jsonFile.write(json.dumps(dataDict,indent=4))
-    
-    # should display 'bar'
-    return 'Received !' # response to your request.
+        utils.write_json_file(utils.ReportDataFile,writeData)
 
-app.run(port=5000)
+        return 'Received !' # response to your request.
+
+    app.run(port=5000)
+
+
+if __name__ == "__main__":
+    TwilioAppServer()
