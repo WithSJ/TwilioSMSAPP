@@ -1,4 +1,5 @@
 from __future__ import with_statement
+import os
 from kivymd.uix.screen import MDScreen 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.theming import ThemableBehavior
@@ -42,6 +43,10 @@ class Report_Screen(MDScreen):
         self.load_data_row()
         self.ids.data_table.add_widget(self.data_tables)
    
+    def clear_report(self):
+        os.remove(utils.ReportDataFile)
+        os.remove(utils.UserDataFile)
+        
     def load_data_row(self):
         # allData = dict()
         # with open(utils.UserDataFile) as userdata:

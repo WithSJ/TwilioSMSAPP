@@ -31,7 +31,14 @@
         on_release:
             data_table.clear_widgets()
             root.load_data_table()
-
+    MDRaisedButton:
+        text: "Clear"
+        md_bg_color: "#e7e4c0"
+        text_color: "#4a4939"
+        pos_hint: {"center_x":0.3, "center_y":.135}
+        on_release:
+            data_table.clear_widgets()
+            root.clear_report()
 
     SideNavMenu:
         #SideNavMenu
