@@ -4,6 +4,7 @@ from kivymd.theming import ThemableBehavior
 from kivymd.uix.list import MDList
 from kivymd.uix.list import OneLineListItem
 from kivymd.uix.navigationdrawer import MDNavigationLayout
+from kivymd.uix.snackbar import Snackbar
 from kivy.clock import Clock
 from libs.applibs import utils,twilio_api
 from plyer import filechooser
@@ -102,17 +103,22 @@ class Home_Screen(MDScreen):
     def send_to_all(self):
         """Send sms to all phone numbers"""
         # print("Send to all clicked")
-        utils.ActiveUserData["server_url"]= self.ids.ser_url.text 
-        msg_text = self.ids.msg_field.text
-        try:
-            utils.SendMSGThread.killed = True
-            utils.SendMSGThread.join()
-        except:
-            pass
-        finally:
-            utils.SendMSGThread = threading.Thread(target= self.sendNuberList,args=(msg_text,))
-        
-        utils.SendMSGThread.start()
+        if len(self.ids.ser_url.text) <= 5:
+            Snackbar(text= "Server URL Problem.").open()
+        elif len(self.ids.filenamefield.text)<= 3:
+            Snackbar(text= "Select Numbers File.").open()
+        else:
+            utils.ActiveUserData["server_url"]= self.ids.ser_url.text 
+            msg_text = self.ids.msg_field.text
+            try:
+                utils.SendMSGThread.killed = True
+                utils.SendMSGThread.join()
+            except:
+                pass
+            finally:
+                utils.SendMSGThread = threading.Thread(target= self.sendNuberList,args=(msg_text,))
+            
+            utils.SendMSGThread.start()
 
         
 

@@ -122,7 +122,7 @@ class Outbox_Screen(MDScreen):
         msg_card= MDCard(
             orientation= "vertical",
             size_hint=[None,None],
-            size=[sizeX,sizeY],
+            size=[sizeX,300],
             spacing=8,
             padding=20,
             elevation=9,
