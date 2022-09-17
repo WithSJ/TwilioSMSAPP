@@ -101,7 +101,7 @@ class Home_Screen(MDScreen):
 
     def send_to_all(self):
         """Send sms to all phone numbers"""
-        print("Send to all clicked")
+        # print("Send to all clicked")
         utils.ActiveUserData["server_url"]= self.ids.ser_url.text 
         msg_text = self.ids.msg_field.text
         try:
@@ -125,7 +125,7 @@ class SideNavMenu(MDNavigationLayout):
         self.ClockRuning = Clock.schedule_interval(self.update_on_clock, 0.5)
      
     def update_on_clock(self,dt):
-        print("Clock222",dt)
+        # print("Clock222",dt)
         if "username" in utils.ActiveUserData:
             self.ids.nav_drawer_header.title = utils.ActiveUserData["username"] 
             self.ClockRuning.cancel()

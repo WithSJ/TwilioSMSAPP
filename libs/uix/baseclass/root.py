@@ -51,7 +51,7 @@ class Root(ScreenManager):
             self.dialog.open()
         
         else:
-            print(self.screen_list)
+            # print(self.screen_list)
             self.transition.direction = "left"
             self.current = self.screen_list[len(self.screen_list)-1]
             
@@ -71,7 +71,7 @@ class Root(ScreenManager):
             self.screen_list.remove(name)
             self.screen_list.append(self.current)
         
-        print(self.screen_list)
+        # print(self.screen_list)
 
         # if name == "home":            
             # MDBottomNavigation not resize there tabs when app stat in android 

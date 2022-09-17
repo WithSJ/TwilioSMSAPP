@@ -80,9 +80,9 @@ class Report_Screen(MDScreen):
         
         
     def update_on_clock(self,dt):
-        print("Not Report")
+        # print("Not Report")
         if utils.StartReport:
-            print("-----------YEs Report")
+            # print("-----------YEs Report")
             self.load_data_row()
             utils.StartReport = False
             

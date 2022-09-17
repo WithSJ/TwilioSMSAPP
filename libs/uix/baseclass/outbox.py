@@ -47,7 +47,7 @@ class Outbox_Screen(MDScreen):
         if filedata != 0:
             for k in dict(filedata):
                 if filedata[k]["Number"] not in self.INList:
-                    print(filedata[k]["Number"])
+                    # print(filedata[k]["Number"])
                     self.ids.container.add_widget(
                         OneLineListItem(text=filedata[k]["Number"],on_press=self.on_list_press)
                     )
@@ -69,7 +69,7 @@ class Outbox_Screen(MDScreen):
         if msg_textbox[1] <= fixed_Y_size:
             
             self.ids.send_card.size[1]=msg_textbox[1]
-            print(msg_textbox)
+            # print(msg_textbox)
         else:
             self.ids.send_card.size[1]=fixed_Y_size
 
@@ -142,7 +142,7 @@ class Outbox_Screen(MDScreen):
 
         msg_card.add_widget(text_msg)
         self.ids.all_msgs.add_widget(msg_card)
-        print(msg_data)
+        # print(msg_data)
         self.ids.msg_scroll_view.scroll_to(msg_card)
         self.ids.msg_textbox.text=""
     pass
