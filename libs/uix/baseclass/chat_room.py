@@ -18,7 +18,7 @@ class Chat_Room_Screen(MDScreen):
         if msg_textbox[1] <= fixed_Y_size:
             
             self.ids.send_card.size[1]=msg_textbox[1]
-            print(msg_textbox)
+            # print(msg_textbox)
         else:
             self.ids.send_card.size[1]=fixed_Y_size
     
@@ -60,7 +60,7 @@ class Chat_Room_Screen(MDScreen):
 
         msg_card.add_widget(text_msg)
         self.ids.all_msgs.add_widget(msg_card)
-        print(msg_data)
+        # print(msg_data)
         self.ids.msg_scroll_view.scroll_to(msg_card)
         self.ids.msg_textbox.text=""
 
